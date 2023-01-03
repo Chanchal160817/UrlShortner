@@ -3,9 +3,12 @@ const validurl = require('valid-url')
 const shortid = require('shortid')
 const redis = require('redis')
 const { promisify } = require("util");
+// It convert the method that return responses using 
+// a callback function to return responses in a promise object.
 const baseURL = "http://localhost:3000"
 const { isValid, isValidBody } = require('../validator/validator');
 const { url } = require('inspector');
+// inspector module provides an api for interacting with the v8 inspector 
 
 
 //_________________________________Connected with Redis__________________________
@@ -61,19 +64,6 @@ const createURL = async function (req, res) {
                 .status(400)
                 .send({ status: false, msg: "Please Enter a valid URL." });
         }
-
-
-        // if(longUrl){
-        //     var validLink = false
-        //     await axios.get(longUrl)
-        //     .then((res)=>{
-        //         if (res.status == 200 || res.status == 201)
-        //         validLink = true; 
-        //     })
-        //     .catch((error) => { validLink = false })
-        //     if(validLink==false)
-        //     return res.status(400).send({ status: false, message: "Invalid url or may be Private Url. Please enter valid and public url!!" })
-        // }
 
         
         //_______________________Cache_______________________________________________________________
